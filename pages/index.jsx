@@ -22,7 +22,7 @@ export default function Home() {
 
       setPokemons(pokemon);
       setPokemonsSrcImage(initialName);
-      return pokemon;
+      return;
     };
     fetchData();
   }, []);
