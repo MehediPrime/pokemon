@@ -9,6 +9,10 @@ body {
   font-size: 16px;
   font-family: Ubuntu;
   font-weight: 400;
+  scroll-behavior: smooth;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 #logo {
   margin-top: 64px;

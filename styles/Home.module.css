@@ -17,8 +17,28 @@
   flex-wrap: wrap;
   gap: 90px;
   row-gap: 40px;
+  scroll-behavior: smooth;
 }
-.cards > a {
+.moveButton {
+  position: absolute;
+  background-color: #2b73b9;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  color: #ffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 100%;
+  top: 270px;
+  z-index: 5;
+}
+.left {
+  left: 10px;
+}
+.right {
+  right: 10px;
+}
+.cards a {
   color: #000000;
   text-decoration: none;
 }
@@ -97,10 +117,8 @@
 /* Blog Section */
 .title {
   text-align: center;
-  font-size: 3rem;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 55px;
-
   width: 542px;
   margin: 0 auto;
   margin-top: 95px;
@@ -137,6 +155,9 @@
   float: right;
   margin: -76px 0px 0px 24px;
 }
+.middlePart {
+  display: none;
+}
 .rightPart {
   text-align: justify;
 }
@@ -159,4 +180,104 @@
   float: left;
   clear: both;
   margin-right: 24px;
+}
+@media screen and (max-width: 1650px) {
+  .hero {
+    padding-right: 0px;
+  }
+  .cards {
+    cursor: grab;
+    margin-left: 16px;
+    margin-right: 0px;
+    margin-top: 50px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
+  .card {
+    transform: translateX(0px);
+  }
+}
+@media screen and (max-width: 1180px) {
+  .sideAnimation {
+    display: none;
+  }
+  .title {
+    font-size: 24px;
+    width: 271px;
+    height: 56px;
+    margin-left: auto;
+    background-size: cover;
+  }
+  .details {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .imageOne,
+  .imageTwo,
+  .imageThree,
+  .imageFour,
+  .imageFive {
+    display: none;
+  }
+
+  .disappear {
+    display: none;
+  }
+  .middlePart {
+    display: flex;
+    margin: 5px;
+    justify-content: center;
+  }
+  .middleColumns {
+    display: grid;
+    grid-template-columns: 206px 206px 206px;
+  }
+  .middleColumnOne {
+    margin-top: 60px;
+  }
+  .middleColumnThree {
+    margin-top: 75px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .hero {
+    height: 500px;
+  }
+  .moveButton {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .cards {
+    margin-top: 16px;
+    gap: 15px;
+  }
+  .details p {
+    padding: 0px 20px;
+  }
+  .middleColumns {
+    grid-template-columns: 126px 126px 126px;
+  }
+  .middleColumns img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 442px) {
+  .middleColumns {
+    grid-template-columns: 111px 111px 111px;
+  }
+  .middleColumns img {
+    width: 108px;
+    height: 100px;
+  }
+  .details {
+    margin: 5px;
+  }
 }

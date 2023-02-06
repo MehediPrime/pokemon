@@ -93,6 +93,11 @@
 }
 .second > img {
   width: auto;
+  transition: 0.3s;
+}
+.second > img:hover {
+  scale: 1.05;
+  transition: 0.3s;
 }
 .shadow {
   width: 283px;
@@ -139,6 +144,7 @@
 .buttonSection {
   display: flex;
   justify-content: center;
+  padding-bottom: 36px;
 }
 .button {
   padding: 10px 28px;
@@ -236,9 +242,5 @@
     background: rgba(0, 0, 0, 0.1);
     filter: blur(10px);
     margin-bottom: 26px;
-  }
-
-  .buttonSection {
-    padding-bottom: 36px;
   }
 }

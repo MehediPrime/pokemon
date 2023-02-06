@@ -1,14 +1,15 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getInitialPokemonName } from "./api/getInitialPokemonName";
 import { getPokemonShortData } from "./api/getPokemonShortData";
 import style from "../styles/Home.module.css";
+import { slide } from "./Slide";
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState(false);
   const [imageSrc, setPokemonsSrcImage] = useState([]);
-
+  const [movableContainer, setMovableContainer] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const initialName = await getInitialPokemonName();
@@ -27,6 +28,20 @@ export default function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const container = document.getElementById("cards");
+    setMovableContainer(container);
+    slide(container);
+  }, [movableContainer]);
+
+  const moveRight = (e) => {
+    e.preventDefault();
+    movableContainer.scrollLeft = movableContainer.scrollLeft + 250;
+  };
+  const moveLeft = (e) => {
+    e.preventDefault();
+    movableContainer.scrollLeft = movableContainer.scrollLeft - 250;
+  };
   return (
     <>
       <div className={style.hero}>
@@ -39,48 +54,66 @@ export default function Home() {
             priority
           />
         </div>
-        <div className={style.cards}>
-          {pokemons.map((value, key) => {
-            const imgLink = imageSrc.find((img) => img.name === value.name);
-            return (
-              <Link
-                className={style.card}
-                href={`/details?name=${value.name}`}
-                key={key}
-              >
-                <center>
-                  <div className={style.cardImages}>
-                    <p>#{value.id}</p>
-                    <center>
-                      <img
-                        className={style.cardImage}
-                        src={imgLink.artwork}
-                        alt={imgLink.name}
-                        width="175px"
-                      />
-                    </center>
+
+        <button
+          className={`${style.moveButton} ${style.left}`}
+          onClick={moveLeft}
+        >
+          {"<"}
+        </button>
+        <button
+          className={`${style.moveButton} ${style.right}`}
+          onClick={moveRight}
+        >
+          {">"}
+        </button>
+
+        <div className={style.cards} id="cards">
+          {pokemons ? (
+            pokemons.map((value, key) => {
+              const imgLink = imageSrc.find((img) => img.name === value.name);
+              return (
+                <Link
+                  className={style.card}
+                  href={`/details?name=${value.name}`}
+                  key={key}
+                >
+                  <center>
+                    <div className={style.cardImages}>
+                      <p>#{value.id}</p>
+                      <center>
+                        <img
+                          className={style.cardImage}
+                          src={imgLink.artwork}
+                          alt={imgLink.name}
+                          width="175px"
+                        />
+                      </center>
+                    </div>
+                  </center>
+                  <div className={style.cardTitle}>
+                    {value.name}
+                    <div className={style.cardTag}>
+                      {value.types.map((value, key) => {
+                        return (
+                          <div
+                            className={`${
+                              style.tag
+                            } ${value.type.name.toLowerCase()}`}
+                            key={key}
+                          >
+                            {value.type.name}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </center>
-                <div className={style.cardTitle}>
-                  {value.name}
-                  <div className={style.cardTag}>
-                    {value.types.map((value, key) => {
-                      return (
-                        <div
-                          className={`${
-                            style.tag
-                          } ${value.type.name.toLowerCase()}`}
-                          key={key}
-                        >
-                          {value.type.name}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })
+          ) : (
+            <h1 style={{ fontSize: "50px" }}>Loading</h1>
+          )}
         </div>
       </div>
 
@@ -126,7 +159,7 @@ export default function Home() {
             officia atque quaerat dolor suscipit necessitatibus impedit commodi
             nisi neque, consectetur temporibus harum iste sed asperiores? Velit
           </p>
-          <p>
+          <p className={style.disappear}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
             vitae ab, consequatur voluptates temporibus architecto excepturi
             nostrum expedita obcaecati! Magni accusamus asperiores eum ex facere
@@ -135,7 +168,7 @@ export default function Home() {
             officia atque quaerat dolor suscipit necessitatibus impedit commodi
             nisi
           </p>
-          <p>
+          <p className={style.disappear}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
             vitae ab, consequatur voluptates temporibus architecto excepturi
             nostrum expedita obcaecati! Magni accusamus asperiores eum ex facere
@@ -146,7 +179,7 @@ export default function Home() {
             temporibus at, quae nobis facere pariatur accusamus placeat, quas
             dignissimos nam enim illum autem!
           </p>
-          <p>
+          <p className={style.disappear}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa vel
             expedita magni repellat corporis impedit laudantium nemo repellendus
             qui, aliquam modi veniam delectus ea itaque? Sint eligendi molestias
@@ -169,6 +202,47 @@ export default function Home() {
             repudiandae ab explicabo, dolores consequatur fuga hic voluptatibus
             incidunt repellat libero eius. Eius perferendis voluptas ab amet.
           </p>
+        </div>
+        <div className={style.middlePart}>
+          <div className={style.middleColumns}>
+            <div className={style.middleColumnOne}>
+              <Image
+                src="/../public/image/Image04.png"
+                width={200}
+                height={200}
+                alt="image04"
+              />
+            </div>
+            <div className={style.middleColumnTwo}>
+              <Image
+                src="/../public/image/Image03.png"
+                width={200}
+                height={200}
+                alt="image03"
+              />
+
+              <Image
+                src="/../public/image/Image02.png"
+                width={200}
+                height={200}
+                alt="image02"
+              />
+            </div>
+            <div className={style.middleColumnThree}>
+              <Image
+                src="/../public/image/Image05.png"
+                width={200}
+                height={200}
+                alt="image05"
+              />
+              <Image
+                src="/../public/image/Image01.png"
+                width={200}
+                height={200}
+                alt="image01"
+              />
+            </div>
+          </div>
         </div>
         <div className={style.rightPart}>
           <div className={style.imageFour}>
