@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { getInitialPokemonName } from "./api/getInitialPokemonName";
 import { getPokemonShortData } from "./api/getPokemonShortData";
 import style from "../styles/Home.module.css";
-import slide from "./Slide";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState(false);
@@ -31,7 +30,42 @@ export default function Home() {
   useEffect(() => {
     const container = document.getElementById("cards");
     setMovableContainer(container);
-    slide(container);
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    const slider = container;
+    const end = () => {
+      isDown = false;
+      slider.classList.remove("active");
+    };
+
+    const start = (e) => {
+      isDown = true;
+      slider.classList.add("active");
+      startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+
+    const move = (e) => {
+      if (!isDown) return;
+
+      e.preventDefault();
+      const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+      const dist = x - startX;
+      slider.scrollLeft = scrollLeft - dist;
+    };
+
+    (() => {
+      slider.addEventListener("mousedown", start);
+      slider.addEventListener("touchstart", start);
+
+      slider.addEventListener("mousemove", move);
+      slider.addEventListener("touchmove", move);
+
+      slider.addEventListener("mouseleave", end);
+      slider.addEventListener("mouseup", end);
+      slider.addEventListener("touchend", end);
+    })();
   }, [movableContainer]);
 
   const moveRight = (e) => {

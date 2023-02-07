@@ -189,6 +189,7 @@
 @media screen and (max-width: 1650px) {
   .moveButton {
     display: block;
+    top: 50vh;
   }
   .hero {
     padding-right: 0px;
@@ -197,7 +198,7 @@
     cursor: grab;
     margin-left: 16px;
     margin-right: 0px;
-    margin-top: 50px;
+    margin-top: 20vh;
     flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
@@ -260,6 +261,7 @@
     width: 30px;
     height: 30px;
     font-size: 16px;
+    top: 270px;
   }
   .cards {
     margin-top: 16px;
