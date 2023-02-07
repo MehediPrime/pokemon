@@ -31,8 +31,8 @@ export default function details() {
   return (
     <div className={style.characterPage}>
       <div id="logo">
-        <Image
-          src="/../public/image/Logo.png"
+        <img
+          src={"image/Logo.png"}
           width={265}
           height={95}
           alt="Logo"
