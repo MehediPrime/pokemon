@@ -80,8 +80,8 @@ export default function Home() {
     <>
       <div className={style.hero}>
         <div id="logo">
-          <Image
-            src="/../public/image/Logo.png"
+          <img
+            src={"image/Logo.png"}
             width={265}
             height={95}
             alt="Logo"
@@ -161,24 +161,24 @@ export default function Home() {
       <div className={style.details}>
         <div className={style.leftPart}>
           <div className={style.imageOne}>
-            <Image
-              src="/../public/image/Image03.png"
+            <img
+              src="image/Image03.png"
               width={200}
               height={200}
               alt="image03"
             />
           </div>
           <div className={style.imageTwo}>
-            <Image
-              src="/../public/image/Image04.png"
+            <img
+              src="image/Image04.png"
               width={200}
               height={200}
               alt="image04"
             />
           </div>
           <div className={style.imageThree}>
-            <Image
-              src="/../public/image/Image02.png"
+            <img
+              src="image/Image02.png"
               width={200}
               height={200}
               alt="image02"
@@ -240,37 +240,37 @@ export default function Home() {
         <div className={style.middlePart}>
           <div className={style.middleColumns}>
             <div className={style.middleColumnOne}>
-              <Image
-                src="/../public/image/Image04.png"
+              <img
+                src="image/Image04.png"
                 width={200}
                 height={200}
                 alt="image04"
               />
             </div>
             <div className={style.middleColumnTwo}>
-              <Image
-                src="/../public/image/Image03.png"
+              <img
+                src="image/Image03.png"
                 width={200}
                 height={200}
                 alt="image03"
               />
 
-              <Image
-                src="/../public/image/Image02.png"
+              <img
+                src="image/Image02.png"
                 width={200}
                 height={200}
                 alt="image02"
               />
             </div>
             <div className={style.middleColumnThree}>
-              <Image
-                src="/../public/image/Image05.png"
+              <img
+                src="image/Image05.png"
                 width={200}
                 height={200}
                 alt="image05"
               />
-              <Image
-                src="/../public/image/Image01.png"
+              <img
+                src="image/Image01.png"
                 width={200}
                 height={200}
                 alt="image01"
@@ -280,16 +280,16 @@ export default function Home() {
         </div>
         <div className={style.rightPart}>
           <div className={style.imageFour}>
-            <Image
-              src="/../public/image/Image05.png"
+            <img
+              src="image/Image05.png"
               width={200}
               height={200}
               alt="image05"
             />
           </div>
           <div className={style.imageFive}>
-            <Image
-              src="/../public/image/Image01.png"
+            <img
+              src="image/Image01.png"
               width={200}
               height={200}
               alt="image01"
