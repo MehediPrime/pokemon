@@ -1,38 +1,42 @@
-export function slide(container) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  const slider = container;
-  const end = () => {
-    isDown = false;
-    slider.classList.remove("active");
-  };
+import { useEffect } from "react";
 
-  const start = (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  };
+export default function slide(container) {
+  useEffect(() => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    const slider = container;
+    const end = () => {
+      isDown = false;
+      slider.classList.remove("active");
+    };
 
-  const move = (e) => {
-    if (!isDown) return;
+    const start = (e) => {
+      isDown = true;
+      slider.classList.add("active");
+      startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
 
-    e.preventDefault();
-    const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
-    const dist = x - startX;
-    slider.scrollLeft = scrollLeft - dist;
-  };
+    const move = (e) => {
+      if (!isDown) return;
 
-  (() => {
-    slider.addEventListener("mousedown", start);
-    slider.addEventListener("touchstart", start);
+      e.preventDefault();
+      const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+      const dist = x - startX;
+      slider.scrollLeft = scrollLeft - dist;
+    };
 
-    slider.addEventListener("mousemove", move);
-    slider.addEventListener("touchmove", move);
+    (() => {
+      slider.addEventListener("mousedown", start);
+      slider.addEventListener("touchstart", start);
 
-    slider.addEventListener("mouseleave", end);
-    slider.addEventListener("mouseup", end);
-    slider.addEventListener("touchend", end);
-  })();
+      slider.addEventListener("mousemove", move);
+      slider.addEventListener("touchmove", move);
+
+      slider.addEventListener("mouseleave", end);
+      slider.addEventListener("mouseup", end);
+      slider.addEventListener("touchend", end);
+    })();
+  });
 }

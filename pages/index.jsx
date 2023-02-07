@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getInitialPokemonName } from "./api/getInitialPokemonName";
 import { getPokemonShortData } from "./api/getPokemonShortData";
 import style from "../styles/Home.module.css";
-import { slide } from "./slide";
+import slide from "./Slide";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState(false);
